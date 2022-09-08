@@ -1,0 +1,13 @@
+actions:
+  - name: insertTails
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:3000
+custom_types:
+  enums: []
+  input_objects:
+    - name: SampleInput
+  objects:
+    - name: SampleOutput
+    - name: insertOutput
+  scalars: []

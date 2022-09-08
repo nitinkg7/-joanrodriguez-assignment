@@ -1,0 +1,20 @@
+type Mutation {
+  insertTails(
+    tail: String!
+    jsonID: Int!
+  ): insertOutput
+}
+
+input SampleInput {
+  username: String!
+  password: String!
+}
+
+type SampleOutput {
+  accessToken: String!
+}
+
+type insertOutput {
+  json_id: Int!
+}
+
