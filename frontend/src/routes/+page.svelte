@@ -1,6 +1,12 @@
-<script context="module">
-</script>
+<div class="centerText">
+  <h1>Welcome to Assignment</h1>
+</div>
 
-<h1>Welcome to SvelteKit</h1>
-<h1>Hello and welcome to my site!</h1>
-<a href="/about">About my site</a>
+<style>
+  .centerText {
+    display: flex;
+    height: 225px;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

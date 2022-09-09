@@ -1,11 +1,7 @@
 <script>
-  import { request, gql } from "graphql-request";
   import tailData from "../../data/tailData.json";
   import { onMount } from "svelte";
-  console.log("taildata", tailData);
   export let data;
-  let slugValue = data.slug;
-  console.log("data slug", data.slug);
   let filteredData;
   let loader = true;
 
@@ -14,7 +10,6 @@
   });
 
   async function getTailData() {
-    console.log("from function");
     await fetch("http://localhost:8080/v1/graphql", {
       method: "POST",
       headers: {
@@ -38,22 +33,45 @@
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log("tail res::", result, data);
         filteredData = tailData.filter(
           (item) => item.id === result.data.long_tails_aggregate.nodes[0].json_id
         );
         loader = false;
-        console.log("final::", filteredData);
+      })
+      .catch((error) => {
+        console.log("error", error);
       });
   }
 </script>
 
-<h1>{data.slug}</h1>
 <div>
   {#if !loader}
-    <div>
-      <h2>{filteredData[0].title}</h2>
-      <h2>{filteredData[0].description}</h2>
+    <div class="centerText">
+      <div class="textStyle">
+        <h2>Title :</h2>
+        &nbsp;
+        <h3>{filteredData[0].title}</h3>
+      </div>
+      <div class="textStyle">
+        <h2>Description :</h2>
+        &nbsp;
+        <h3>{filteredData[0].description}</h3>
+      </div>
     </div>
   {/if}
 </div>
+
+<style>
+  .centerText {
+    display: flex;
+    height: 225px;
+    align-items: center;
+    justify-content: center;
+  }
+  .textStyle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 25px;
+  }
+</style>
