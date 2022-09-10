@@ -1,5 +1,4 @@
 <script>
-  import tailData from "../../data/tailData.json";
   import { onMount } from "svelte";
   export let data;
   let filteredData;
@@ -17,12 +16,10 @@
       },
       body: JSON.stringify({
         query: `
-          query MyQuery($input: String!) {
-            long_tails_aggregate(where: {tail: {_eq: $input}}) {
-              nodes {
-                json_id
-                tail
-              }
+          query get_tail_by_type($input: String!) {
+            tails(where: {tail_data: {tail: {_eq: $input}}}) {
+              type
+              details
             }
           }
         `,
@@ -33,9 +30,7 @@
     })
       .then((res) => res.json())
       .then((result) => {
-        filteredData = tailData.filter(
-          (item) => item.id === result.data.long_tails_aggregate.nodes[0].json_id
-        );
+        filteredData = result.data.tails[0].details
         loader = false;
       })
       .catch((error) => {
@@ -50,12 +45,12 @@
       <div class="textStyle">
         <h2>Title :</h2>
         &nbsp;
-        <h3>{filteredData[0].title}</h3>
+        <h3>{filteredData.title}</h3>
       </div>
       <div class="textStyle">
         <h2>Description :</h2>
         &nbsp;
-        <h3>{filteredData[0].description}</h3>
+        <h3>{filteredData.description}</h3>
       </div>
     </div>
   {/if}
