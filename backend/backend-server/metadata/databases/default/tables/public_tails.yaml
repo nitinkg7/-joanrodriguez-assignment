@@ -1,0 +1,13 @@
+table:
+  name: tails
+  schema: public
+object_relationships:
+  - name: tail_data
+    using:
+      manual_configuration:
+        column_mapping:
+          type: tail
+        insertion_order: null
+        remote_table:
+          name: long_tails
+          schema: public

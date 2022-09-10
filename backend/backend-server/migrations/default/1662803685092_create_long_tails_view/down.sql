@@ -1,0 +1,4 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- CREATE VIEW long_tails AS
+-- SELECT type as tail, details->>'id' as json_id FROM "tails";

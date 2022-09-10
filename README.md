@@ -3,6 +3,7 @@
 ## Installation
 
 Install [Docker Desktop 18+](https://www.docker.com/products/docker-desktop)
+
 Install [Hasura CLI](https://hasura.io/docs/latest/hasura-cli/install-hasura-cli/)
 
 Clone this repository.
